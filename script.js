@@ -1,49 +1,39 @@
-//generate random password
-function generate(){
-
-  //set password length/complexity
-  let complexity = document.getElementById("slider").value;
-
-  //possible password values
-  let values = "ABCDEFGHIJKLMNOPQRSTUVWZYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+";
-
-  let password = "";
-
-  //create for loop to choose password characters
-  for(var i = 0; i <= complexity; i++){
-      password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
-  }
-
-  //add password to textbox/display area
-  document.getElementById("display").value = password;
-
-  //add password to previously generated passwords section
-  document.getElementById("lastNums").innerHTML += password + "<br />";
-
+// Request length of password to be generated
+let passwordLength = parseInt( prompt("Enter the length of the password"));
+// Request lowercase/uppercase/numeric/special characters boolean value
+let lowerCase = confirm("Would you like to have lowercase in your password?");
+let upperCase = confirm("Would you like to have uppercase in your password?");
+let numeric = confirm("Would you like to have numbers in your password?");
+let specialChar = confirm("Would you like to have special characters in your password?");
+// Generate Password
+let lowerCaseCharacters = "abcdefghijklmnopqrstuvwxyz"
+let upperCaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let numericCharacters = "0123456789"
+let specialCharCharacters = "!@#$%^&*_+"
+let validCharacters = ""
+let password = ""
+if (lowerCase) {
+    validCharacters += lowerCaseCharacters
 }
-
-//set default length display of 25
-document.getElementById("length").innerHTML = "Length: 25";
-
-//function to set length based on slider position
-document.getElementById("slider").oninput = function(){
-
-  if(document.getElementById("slider").value > 0){
-      document.getElementById("length").innerHTML = "Length: " + document.getElementById("slider").value;
-  }
-  else{
-      document.getElementById("length").innerHTML = "Length: 1";
-  }
-
+if (upperCase) {
+    validCharacters += upperCaseCharacters
 }
-
-//function to copy password to clipboard
-function copyPassword(){
-
-  document.getElementById("display").select();
-
-  document.execCommand("Copy");
-
-  alert("Password copied to clipboard!");
-
+if (numeric) {
+    validCharacters += numericCharacters
+}
+if (specialChar) {
+    validCharacters += specialCharCharacters
+}
+for (let i=0; i<passwordLength; i++) {
+    let index = Math.floor(Math.random()*validCharacters.length);
+    password += validCharacters[index]
+}
+console.log("Password",password)
+// Display it on the html page
+document.getElementById("passwordtextfield").innerHTML=password
+function copypassword() {
+    let passwordText = document.querySelector("#passwordtextfield")
+    passwordText.select()
+    document.execCommand("copy")
+    alert("Your Password Has Been Copied")
 }
