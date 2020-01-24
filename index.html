@@ -7,15 +7,44 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="jumbotron">
+    <div>
         <h1>Universal Password Generator</h1>
     </div>
     <div class="container">
+
+        <form>
+            <div>
+                <h2>Password Length:</h2>
+                <input type="text" id="passLength">
+            </div>
+        </form>
+        <br>
+        <form class="checkBoxes">
+            <label for="lowerBox">
+                <input type="checkbox" id="lowerBox">Lowercase</label>
+            <br>
+            <label for="upperBox">
+                <input type="checkbox" id="upperBox">Uppercase</label>
+            <br>
+            <label for="numbersBox">
+                <input type="checkbox" id="numbersBox">Numbers</label>
+            <br>
+            <label for="symbolsBox">
+                <input type="checkbox" id="symbolsBox">Symbols</label>
+        </form>
+        <br>
         <textarea name="" id="passwordtextfield" placeholder="Password Will Be Displayed Here" readonly cols="30"
             rows="10"></textarea>
+        <br>  
+        <button id="generate" class="btn shadow-none" value="passLength">Generate Password</button>
+        <br>
         <button onclick="copypassword()">Copy Password</button>
     </div>
-    <script src="script.js">
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
